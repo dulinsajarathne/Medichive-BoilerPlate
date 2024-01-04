@@ -112,7 +112,7 @@ const App = () => {
                            position:"fixed",
                            top:20,
                            right:20,
-                          
+
                            color:"white",
                            paddingRight:50,
                        }} />
