@@ -35,19 +35,15 @@ const App = () => {
                        left: 0,
                        top: 0,
                        bottom: 0,
-                       background:"#015A92",
                        borderRadius: borderRadiusLG,
+
 
                    }}
             >
 
                 <Menu
-                    style={{
 
-                        background: "#015A92",
-
-                    }}
-                    theme="light"
+                    theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['1']}
                     items={[
@@ -84,7 +80,7 @@ const App = () => {
                                left: collapsed ? 80:200,
                                display: 'flex',
                                paddingLeft:0,
-                               backgroundColor: "#015A92",
+
 
                            }}
 
@@ -92,10 +88,7 @@ const App = () => {
 
 
                        <Button
-                           styles={{
-                               color:"white",
 
-                           }}
                            type="text"
                            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                            onClick={() => setCollapsed(!collapsed)}
@@ -103,6 +96,7 @@ const App = () => {
                                fontSize: '16px',
                                width: 100,
                                height: 64,
+                               color:"white",
                            }}
 
                        />
