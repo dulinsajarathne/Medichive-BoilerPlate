@@ -28,9 +28,16 @@ const App = () => {
         }}>
             <Sider trigger={null} collapsible collapsed={collapsed} onCollapse={() => setCollapsed(!collapsed)}
                    style={{
-
+                       overflow: 'auto',
+                       height: '100vh',
+                       position: 'fixed',
+                       width:collapsed?'50':'150',
+                       left: 0,
+                       top: 0,
+                       bottom: 0,
                        background:"#015A92",
                        borderRadius: borderRadiusLG,
+
                    }}
             >
 
@@ -38,7 +45,7 @@ const App = () => {
                     style={{
 
                         background: "#015A92",
-                        borderRadius: borderRadiusLG,
+
                     }}
                     theme="light"
                     mode="inline"
@@ -69,9 +76,16 @@ const App = () => {
                <div className="header">
                    <Header
                            style={{
-                               display:"flex",
-                               padding: 0,
+                               position: 'fixed',
+                               top: 0,
+                               width:'100vw',
+
+
+                               left: collapsed ? 80:200,
+                               display: 'flex',
+                               paddingLeft:0,
                                backgroundColor: "#015A92",
+
                            }}
 
                    >
@@ -94,14 +108,22 @@ const App = () => {
                        />
 
                        <div className="demo-logo">Medichive</div>
+                       <UserOutlined style={{
+                           position:"fixed",
+                           top:20,
+                           right:20,
+                          
+                           color:"white",
+                           paddingRight:50,
+                       }} />
                    </Header>
                </div>
                 <Content
                     style={{
                         margin: '24px 16px',
-                        padding: 24,
+                        padding: '100',
                         minHeight: '90vh',
-                        minWidth:'100vw',
+                        width:'100vw',
                         background: colorBgContainer,
                         borderRadius: borderRadiusLG,
                     }}
@@ -109,6 +131,9 @@ const App = () => {
 
                 </Content>
             </Layout>
+
+
+
         </Layout>
     );
 };
