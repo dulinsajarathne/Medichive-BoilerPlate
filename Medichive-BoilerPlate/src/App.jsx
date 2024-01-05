@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+
+import {BrowserRouter as Router , Route, Link, Routes  } from "react-router-dom";
+
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -10,6 +13,12 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
 import './App.css';
+import Home from './components/Home';
+import Nav2 from './components/Nav2';
+import Logout from './components/Logout';
+import Column from 'antd/es/table/Column';
+
+
 
 const { Header, Sider, Content } = Layout;
 const App = () => {
@@ -19,11 +28,10 @@ const App = () => {
     } = theme.useToken();
 
     return (
-        <Layout
+       <Router>
+            <Layout
             style={{
             minHeight:'100vh',
-
-
             borderRadius: borderRadiusLG,
         }}>
             <Sider trigger={null} collapsible collapsed={collapsed} onCollapse={() => setCollapsed(!collapsed)}
@@ -36,47 +44,39 @@ const App = () => {
                        top: 0,
                        bottom: 0,
                        borderRadius: borderRadiusLG,
-
+                       //marginLeft:'1vw',
 
                    }}
             >
 
                 <Menu
-
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['1']}
-                    items={[
-                        {
-                            key: '1',
-                            icon: <HomeOutlined />,
-                            label: 'Home',
+                    
 
-                        },
-                        {
-                            key: '2',
-                            icon: <VideoCameraOutlined />,
-                            label: 'nav 2',
-
-                        },
-                        {
-                            key: '3',
-                            icon: <LogoutOutlined />,
-                            label: 'Logout',
-                        },
-                    ]}
-
-                />
+                >
+                     <Menu.Item key="1" icon={<HomeOutlined />}>
+                            <Link to="/">Home</Link>
+                        </Menu.Item>
+                        <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+                            <Link to="/nav2">Nav2</Link>
+                        </Menu.Item>
+                        <Menu.Item key="3" icon={<LogoutOutlined />}>
+                            <Link to="/logout">Logout</Link>
+                        </Menu.Item>
+                </Menu>
             </Sider>
             <Layout>
-               <div className="header">
+               
                    <Header
                            style={{
                                position: 'fixed',
                                top: 0,
-                               width:'100vw',
-
-
+                               zIndex: 2,
+                               overflowXIndex:1,
+                               minWidth:'100vw',
+                               
                                left: collapsed ? 80:200,
                                display: 'flex',
                                paddingLeft:0,
@@ -88,7 +88,6 @@ const App = () => {
 
 
                        <Button
-
                            type="text"
                            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                            onClick={() => setCollapsed(!collapsed)}
@@ -98,7 +97,6 @@ const App = () => {
                                height: 64,
                                color:"white",
                            }}
-
                        />
 
                        <div className="demo-logo">Medichive</div>
@@ -111,24 +109,45 @@ const App = () => {
                            paddingRight:50,
                        }} />
                    </Header>
-               </div>
-                <Content
-                    style={{
-                        margin: '24px 16px',
-                        padding: '100',
-                        minHeight: '90vh',
-                        width:'100vw',
-                        background: colorBgContainer,
-                        borderRadius: borderRadiusLG,
-                    }}
-                >
+                   <Content style={{ margin: '0.5vw 1vw 0 1vw', overflow: 'initial' ,position:'absolute', top: '10vh',
+                        left: collapsed ? 80:200,  }}>
+          <div
+            style={{
+              minHeight:'100vh',
+                minWidth: collapsed ?'91vw':'84vw',
+              color:'black',
+              padding: 24,
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+            }}
+          >
+           
+            {/* {
+              // indicates very long content
+              Array.from({ length: 100 }, (_, index) => (
+                <React.Fragment key={index}>
+                  {index % 20 === 0 && index ? 'more' : '...'}
+                  <br />
+                </React.Fragment>
+              ))
+            } */}
+              <Routes>
+                 <Route path="/" element={<Home/>} />
+                <Route path="/nav2" element={<Nav2/>} />
+                <Route path="/logout" element={<Logout/>} />
+                        
+                    
+             </Routes>
 
-                </Content>
+          </div>
+        </Content>
+                
             </Layout>
 
 
 
         </Layout>
+        </Router>
     );
 };
 export default App;
