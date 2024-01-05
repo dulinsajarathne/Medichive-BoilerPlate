@@ -2,30 +2,43 @@ import React, {useState} from "react";
 import {Layout, Menu, theme} from "antd";
 import {HomeOutlined, LogoutOutlined, VideoCameraOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
-import HeaderBar from "./HeaderBar";
-import {collapsed,setCollapsed} from "./HeaderBar";
+import './App.css'
 
-const { Sider} = Layout;
+
+
+const { Sider } = Layout;
 function SideBar(){
+
+
 
     const {
         token: {colorBgContainer, borderRadiusLG},
     } = theme.useToken();
     return (
-        <Sider trigger={null} collapsible collapsed={collapsed} onCollapse={() => setCollapsed(!collapsed)}
+        <Sider
+            breakpoint="lg"
+            collapsedWidth="0"
+            onBreakpoint={(broken) => {
+                console.log(broken);
+            }}
+            onCollapse={(collapsed, type) => {
+                console.log(collapsed, type);
+            }}
 
                style={{
                    overflow: 'auto',
                    height: '100vh',
                    position: 'fixed',
-                   width: collapsed ? '50' : '150',
+                   //width: 250,
                    left: 0,
                    top: 0,
                    bottom: 0,
-                   borderRadius: borderRadiusLG,
+                   //borderRadius: borderRadiusLG,
 
 
                }}>
+            <div className="demo-logo-vertical" />
+            <div className="demo-logo">Medichive</div>
 
             <Menu
                 theme="dark"
@@ -47,4 +60,4 @@ function SideBar(){
 
 }
 export  default SideBar;
-export {collapsed,setCollapsed};
+

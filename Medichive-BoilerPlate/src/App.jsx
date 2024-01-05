@@ -8,14 +8,12 @@ import ContentDetails from "./ContentDetails";
 
 
 const App = () => {
-    const [collapsed, setCollapsed] = useState(false);
-    const {
-        token: {colorBgContainer, borderRadiusLG},
-    } = theme.useToken();
+
+
     return (
         <Router>
             <Layout>
-               <SideBar collapsed={collapsed}/>
+               <SideBar />
                 <Layout>
                     <HeaderBar />
                     <ContentDetails />

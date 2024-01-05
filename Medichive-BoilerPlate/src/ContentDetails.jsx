@@ -10,20 +10,20 @@ const {Content} = Layout;
 
 function ContentDetails() {
 
-    const [collapsed, setCollapsed] = useState(false);
+
     const {
         token: {colorBgContainer, borderRadiusLG},
     } = theme.useToken();
 
     return (
         <Content style={{
-            margin: '0.5vw 1vw 0 1vw', overflow: 'initial', position: 'absolute', top: '10vh',
-            left: collapsed ? 80 : 200,
+            margin: '0.5vw 1vw 0 1vw', overflow: 'initial', position: 'absolute', top: '15vh',
+            left: 200, zIndex:-2,
         }}>
             <div
                 style={{
                     minHeight: '100vh',
-                    minWidth: collapsed ? '91vw' : '84vw',
+                    minWidth:  '84vw',
                     color: 'black',
                     padding: 24,
                     background: colorBgContainer,
